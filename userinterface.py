@@ -3,5 +3,5 @@ import cvs
 
 from tkinter import *
 
-Window = tkinter.Tk()
+Window = Tk()
 Window.mainloop()
