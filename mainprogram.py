@@ -5,7 +5,7 @@ C19_Tracer = Tk()
 C19_Tracer.title("COVID 19 TRACER")
 C19_Tracer.geometry("700x500")
 
-login_signup_button = Button(C19_Tracer, text="Log in/Sign up").grid(row="1", column="7")
+mainscreen_login_signup = Label(C19_Tracer, text = "Sign in:").grid(row = 2, column = 3)
 
 C19_Tracer.mainloop()
 
