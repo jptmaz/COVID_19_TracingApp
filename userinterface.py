@@ -1,6 +1,7 @@
-#Import tkinker and cvs
-from tkinter import *
-import cvs
+import tkinter
+import cvs 
 
-#Create Class for the User Interface
-#Add input details
+from tkinter import *
+
+Window = tkinter.Tk()
+Window.mainloop()
