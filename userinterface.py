@@ -2,8 +2,10 @@ import csv
 from tkinter import *
 
 class User_Input:
-    def main_screen(self):
-    def database():
     def log_in():
-    def resgister():
-        
+        Window = Tk()
+        Window.geometry("400x150")
+        Window.title("COVID 19 - TRACER (LOGIN)")
+
+
+User_Input.log_in()
