@@ -1,9 +1,9 @@
 from userinterface import *
 from tkinter import *
+import csv
 
-Contact_Tracer = Tk()
-Contact_Tracer.title("COVID 19 TRACER")
+class UserInput_C19(User_Input):
+    def log_in(self):
+        return super().log_in()
 
-
-Contact_Tracer.mainloop()
 

@@ -8,11 +8,15 @@ class User_Input:
         self.Login_Window.title("Log in")
         self.username = username
         self.password = password
-        Window = self.Login_Window
         
+        #username
         username_label =Label(self.Login_Window, text = "Username").grid(row=0, column=1)
         username = StringVar()
-        password_entry = Entry(self.Login_Window, textvariable="Username").grid(row=2, column=1)
+        username_entry = Entry(self.Login_Window, textvariable="Username").grid(row=0, column=2)
+        #password
+        password_label = Label(self.Login_Window, text = "Password",).grid(row=1, column=1)
+        password = StringVar()
+        password_entry = Entry(self.Login_Window, textvariable="Password", show="*").grid(row=1, column=2)
         
-        Window.mainloop()
-        return
+        self.Login_Window.mainloop()
+    
