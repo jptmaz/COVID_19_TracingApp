@@ -19,8 +19,14 @@ username = StringVar()
 username_entry = Entry(Window, textvariable= username).grid(row=0, column=1)
 
 #password
-password_label = Label(Window, text = "Password").grid(row=0, column=1)
+password_label = Label(Window, text = "Password").grid(row=1, column=0)
 password = StringVar()
-password_entry = Entry(Window, textvariable="Password").grid(row=0, column=1)
+password_entry = Entry(Window, textvariable="Password", show="*").grid(row=1, column=1)
+
+#validate login
+validate_login = partial(user_login, username, password)
+
+#login button
+login_button = Button(Window, text = "Login", command=validate_login).grid(row=4, column=0)
 
 Window.mainloop()
