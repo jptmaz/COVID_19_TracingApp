@@ -1,10 +1,8 @@
-# search word on dBase.txt
+class searchdbase():
+    def findword():
+        wordToSearch = input(str("Any: "))
 
-
-
-wordToSearch = input(str("Any: "))
-
-with open(r'dBase.txt', 'r') as fp:
+    with open(r'dBase.txt', 'r') as fp:
     # read all lines in a list
     lines = fp.readlines()
     for line in lines:
@@ -13,4 +11,3 @@ with open(r'dBase.txt', 'r') as fp:
             print(wordToSearch, 'txt exists in file')
             print('Line Number:', lines.index(line))
             print('Line:', line)
-

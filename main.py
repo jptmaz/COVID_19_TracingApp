@@ -5,6 +5,7 @@ from tkinter import ttk
 from tkinter import filedialog  
 from convtostr import *
 from window import *
+from searchwindow import *
 
      
 #sample call function from another class     
@@ -14,7 +15,7 @@ convtostr.return42()
 #print (jaja)
  
 # submit part       
-def call_result(label_results, inputLname, inputFname, inputAge, inputGender, inputAddr, inputContact):  
+def call_result(label_results, inputLname, inputFname, inputAge, inputGender, inputAddr, inputContact, inputfever, inputcough, inputbodypain, inputsorethroat, inputfatigue, inputdiarrhea, inputlosssenses, inputdiffbreathing):  
         
         # create list of inputs
         resLname = (inputLname.get())  
@@ -23,9 +24,18 @@ def call_result(label_results, inputLname, inputFname, inputAge, inputGender, in
         resGender   = (inputGender.get())  
         resAddr   = (inputAddr.get())
         resContact   = (inputContact.get())
+        resfever = (inputfever.get())  
+        rescough = (inputcough.get())
+        resbodypain   = (inputbodypain.get())
+        ressorethroat   = (inputsorethroat.get())  
+        resfatigue   = (inputfatigue.get())
+        resdiarrhea   = (inputdiarrhea.get())
+        reslosssenses   = (inputlosssenses.get())
+        resdiffbreathing = (inputdiffbreathing.get())
+        
         
         # combine input and add spaces
-        results = (f"{resLname} {resFname} {resAge} {resGender} {resAddr} {resContact}")
+        results = (f"{resLname} {resFname} {resAge} {resGender} {resAddr} {resContact} {resfever} {rescough} {resbodypain} {ressorethroat} {resfatigue} {resdiarrhea} {reslosssenses} {resdiffbreathing}")
         
         # this just show result uncomment to show
         # label_result.config(text="Result %s" % results) 
@@ -67,7 +77,7 @@ def call_result(label_results, inputLname, inputFname, inputAge, inputGender, in
 
 # Create Window
 root = tk.Tk()  
-root.geometry('430x400')  
+root.geometry('1024x600')  
 root.title('Covid 19 Contact')
 
 #setWindow()
@@ -85,7 +95,7 @@ sorethroat = tk.StringVar()
 fatigue = tk.StringVar()
 diarrhea = tk.StringVar()
 losssenses= tk.StringVar()
-contact = tk.StringVar()
+diffbreathing = tk.StringVar()
 
 labelNum1 = tk.Label(root, text="Last Name").grid(row=1, column=0)  
 labelNum2 = tk.Label(root, text="First Name").grid(row=2, column=0)
@@ -109,19 +119,19 @@ entryNum3 = tk.Entry(root, textvariable=age).grid(row=3, column=2)
 entryNum4 = tk.Entry(root, textvariable=gender).grid(row=4, column=2) 
 entryNum5 = tk.Entry(root, textvariable=addr).grid(row=5, column=2) 
 entryNum6 = tk.Entry(root, textvariable=contact).grid(row=6, column=2)
-entryNum7 = tk.Entry(root, textvariable=lname).grid(row=7, column=2)   
-entryNum8 = tk.Entry(root, textvariable=fname).grid(row=8, column=2)
-entryNum9 = tk.Entry(root, textvariable=age).grid(row=9, column=2)
-entryNum10 = tk.Entry(root, textvariable=gender).grid(row=10, column=2) 
-entryNum11 = tk.Entry(root, textvariable=addr).grid(row=11, column=2) 
-entryNum12 = tk.Entry(root, textvariable=contact).grid(row=12, column=2) 
-entryNum13 = tk.Entry(root, textvariable=contact).grid(row=13, column=2)
-entryNum14 = tk.Entry(root, textvariable=contact).grid(row=14, column=2) 
+entryNum7 = tk.Entry(root, textvariable=fever).grid(row=7, column=2)   
+entryNum8 = tk.Entry(root, textvariable=cough).grid(row=8, column=2)
+entryNum9 = tk.Entry(root, textvariable=bodypain).grid(row=9, column=2)
+entryNum10 = tk.Entry(root, textvariable=sorethroat).grid(row=10, column=2) 
+entryNum11 = tk.Entry(root, textvariable=fatigue).grid(row=11, column=2) 
+entryNum12 = tk.Entry(root, textvariable=diarrhea).grid(row=12, column=2) 
+entryNum13 = tk.Entry(root, textvariable=losssenses).grid(row=13, column=2)
+entryNum14 = tk.Entry(root, textvariable=diffbreathing).grid(row=14, column=2) 
 
 labelResult = tk.Label(root)   
 labelResult.grid(row=20, column=0)       
 
-call_result = partial(call_result, labelResult, lname, fname, age, gender, addr, contact)  
+call_result = partial(call_result, labelResult, lname, fname, age, gender, addr, contact, fever, cough, bodypain, sorethroat, fatigue, diarrhea, losssenses, diffbreathing)  
 
 buttonCal = tk.Button(root, text="Save", command=call_result).grid(row=70, column=0) 
 
@@ -131,4 +141,7 @@ l1.grid(row=20,column=0)
 t1 = tk.Text(root,  height=10, width=20) # added one text box
 t1.grid(row=20,column=5) 
 
+Button(text="Search database", command= hatdog.cheese).grid(row = 80, column = 0)
+
 root.mainloop()  
+
