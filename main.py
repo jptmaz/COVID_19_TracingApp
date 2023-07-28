@@ -4,49 +4,15 @@ from tkinter import *
 from tkinter import ttk
 from convtostr import *
 
-
-
 #Define a new function to open the window
-def open_root():
-   new=Toplevel(root)
-   new.title("Search Window")
-   new.geometry("650x400")
-   
-   txtarea = Text(new, width=80, height=5)
-   txtarea.pack(pady=20)
-
-  # pathh = Entry(new)
-  # pathh.pack(side=LEFT, expand=True, fill=X, padx=20)
-   
-   with open(r'dBase.txt', 'r') as fp:
-    # read all lines in a list
-        lines = fp.readlines()
-        txtarea.insert(END, lines)
-    
-   s
-   
-   #lbl=Label(new, text="Search Database", fg='red', font=("Helvetica", 16))
-   #lbl.place(x=60, y=50)
-   
-   txtfld=Entry(new, text="This is Entry Widget", bd=5)
-   txtfld.place(x=100, y=150)
-   
-  # l1 = tk.Label(new,text='Output', width=0 ).place(x=100, y=230) 
-  # t1 = tk.Text(new,height=5, width=40).place(x=100, y=250)
-   
-   btn=Button(new, text="search", fg='blue')
-   btn.place(x=300, y=150)
-
-
+def Close():
+    root.destroy()
 
 def showData():
     with open(r'dBase.txt', 'r') as fp:
     # read all lines in a list
         lines = fp.readlines()
-
- 
    
- 
 # submit part       
 def call_result(label_results, inputLname, inputFname, inputAge, inputGender, inputAddr, inputContact, inputfever, inputcough, inputbodypain, inputsorethroat, inputfatigue, inputdiarrhea, inputlosssenses, inputdiffbreathing):  
         
@@ -107,8 +73,6 @@ def call_result(label_results, inputLname, inputFname, inputAge, inputGender, in
         
         
         return  
-
-
 
 # Create Window
 root = tk.Tk()  
@@ -173,11 +137,12 @@ call_result = partial(call_result, labelResult, lname, fname, age, gender, addr,
 l1 = tk.Label(root,  text='Database', width=0 ) # added one Label 
 l1.grid(row=20,column=0) 
 
-t1 = tk.Text(root,  height=10, width=20) # added one text box
-t1.grid(row=20,column=5) 
+t1 = tk.Text(root,  height=9, width=60).place(x=10, y=340)
+#t1.grid(row=20,column=5) 
+
 
 # button save
-buttonCal = tk.Button(root, text="Save Data", command=call_result).grid(row=70, column=0) 
+buttonCal = tk.Button(root, text="Save Data", command=call_result, fg='red').place(x=30, y=520) #.grid(row=70, column=0) 
 
 # button search
 #btn=Button(text="Open Search Window", command=open_root).grid(row = 80, column = 0)
@@ -185,7 +150,48 @@ buttonCal = tk.Button(root, text="Save Data", command=call_result).grid(row=70, 
 
 # button search
 
-btn=Button(text="Open Search Window",command=open_root).grid(row = 80, column = 0)
+#btn=Button(text="Open Search Window",command=open_root).grid(row = 80, column = 0)
 
+# search window
+def open_root():
+   new=Toplevel(root)
+   new.title("Search Window")
+   new.geometry("450x400")
+   
+   btn=Button(new, text="Exit Program", command=Close, fg='blue')
+   btn.place(x=130, y=350)
+   #txt2find = tk.StringVar() 
+   #txtarea = Text(new, width=80, height=5)
+   #txtarea.pack(pady=20)
+  # txtarea.place(x=40, y=20)
+   #pathh = Entry(new)
+   #pathh.pack(side=LEFT, expand=True, fill=X, padx=20)
+   
+   with open("dBase.txt", "r") as f:
+        Label(new, text='file')
+        Label(new, text=f.read()).pack()
+   
+   lbl=Label(new, text="Search Database", fg='red', font=("Helvetica", 16))
+   lbl.place(x=10, y=10)
+   
+   txtfld1=Label(new, text="Enter Text", bd=5)
+   txtfld1.place(x=100, y=180)
+   txtfld=Entry(new, text="This is Ey Widget", bd=5)
+   txtfld.place(x=100, y=150)
+   
+   #labelResult = tk.Label(new)
+   
+
+   labelOut1 = tk.Label(new,text='Output', width=0 ).place(x=100, y=230) 
+   txtBoxOut1 = tk.Text(new,height=5, width=40).place(x=100, y=250)
+   
+   # button below
+   btn=Button(new, text="search", command=call_result, fg='blue')
+   btn.place(x=300, y=350)
+
+btn=Button(text="Open Search Window",command=open_root, fg='blue') #.grid(row = 80, column = 0)
+btn.place(x=130, y=520)
+btn=Button(text="Exit Program", command=Close, fg='blue')
+btn.place(x=300, y=520)
 root.mainloop()  
 
