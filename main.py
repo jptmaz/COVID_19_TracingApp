@@ -2,17 +2,50 @@ import tkinter as tk
 from functools import partial
 from tkinter import *
 from tkinter import ttk
-from tkinter import filedialog  
 from convtostr import *
-from window import *
-from searchwindow import *
 
-     
-#sample call function from another class     
-convtostr.return42()
 
-#jaja = convtostr.joinStr("kulafu")
-#print (jaja)
+
+#Define a new function to open the window
+def open_root():
+   new=Toplevel(root)
+   new.title("Search Window")
+   new.geometry("650x400")
+   
+   txtarea = Text(new, width=80, height=5)
+   txtarea.pack(pady=20)
+
+  # pathh = Entry(new)
+  # pathh.pack(side=LEFT, expand=True, fill=X, padx=20)
+   
+   with open(r'dBase.txt', 'r') as fp:
+    # read all lines in a list
+        lines = fp.readlines()
+        txtarea.insert(END, lines)
+    
+   s
+   
+   #lbl=Label(new, text="Search Database", fg='red', font=("Helvetica", 16))
+   #lbl.place(x=60, y=50)
+   
+   txtfld=Entry(new, text="This is Entry Widget", bd=5)
+   txtfld.place(x=100, y=150)
+   
+  # l1 = tk.Label(new,text='Output', width=0 ).place(x=100, y=230) 
+  # t1 = tk.Text(new,height=5, width=40).place(x=100, y=250)
+   
+   btn=Button(new, text="search", fg='blue')
+   btn.place(x=300, y=150)
+
+
+
+def showData():
+    with open(r'dBase.txt', 'r') as fp:
+    # read all lines in a list
+        lines = fp.readlines()
+
+ 
+   
  
 # submit part       
 def call_result(label_results, inputLname, inputFname, inputAge, inputGender, inputAddr, inputContact, inputfever, inputcough, inputbodypain, inputsorethroat, inputfatigue, inputdiarrhea, inputlosssenses, inputdiffbreathing):  
@@ -75,9 +108,11 @@ def call_result(label_results, inputLname, inputFname, inputAge, inputGender, in
         
         return  
 
+
+
 # Create Window
 root = tk.Tk()  
-root.geometry('1024x600')  
+root.geometry('510x560')  
 root.title('Covid 19 Contact')
 
 #setWindow()
@@ -133,7 +168,7 @@ labelResult.grid(row=20, column=0)
 
 call_result = partial(call_result, labelResult, lname, fname, age, gender, addr, contact, fever, cough, bodypain, sorethroat, fatigue, diarrhea, losssenses, diffbreathing)  
 
-buttonCal = tk.Button(root, text="Save", command=call_result).grid(row=70, column=0) 
+
 
 l1 = tk.Label(root,  text='Database', width=0 ) # added one Label 
 l1.grid(row=20,column=0) 
@@ -141,7 +176,16 @@ l1.grid(row=20,column=0)
 t1 = tk.Text(root,  height=10, width=20) # added one text box
 t1.grid(row=20,column=5) 
 
-Button(text="Search database", command= hatdog.cheese).grid(row = 80, column = 0)
+# button save
+buttonCal = tk.Button(root, text="Save Data", command=call_result).grid(row=70, column=0) 
+
+# button search
+#btn=Button(text="Open Search Window", command=open_root).grid(row = 80, column = 0)
+
+
+# button search
+
+btn=Button(text="Open Search Window",command=open_root).grid(row = 80, column = 0)
 
 root.mainloop()  
 
