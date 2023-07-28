@@ -3,6 +3,8 @@ from functools import partial
 from tkinter import *
 from tkinter import ttk
 from convtostr import *
+from io import StringIO
+import sys
 
 #Define a new function to open the window
 def Close():
@@ -58,9 +60,6 @@ def call_result(label_results, inputLname, inputFname, inputAge, inputGender, in
         with open("dBase.txt",'a') as contents:
                 contents.write(save)
 
-        #workOnFile = open("dBase.txt", "a")
-        #workOnFile.write(str(results))
-        #workOnFile.close()
         
         l1 = tk.Label(root,  text='Database', width=0 ) # added one Label 
         l1.grid(row=20,column=0) 
@@ -78,8 +77,6 @@ def call_result(label_results, inputLname, inputFname, inputAge, inputGender, in
 root = tk.Tk()  
 root.geometry('510x560')  
 root.title('Covid 19 Contact')
-
-#setWindow()
 
 lname = tk.StringVar()  
 fname = tk.StringVar()  
@@ -111,7 +108,6 @@ labelNum12= tk.Label(root, text="Diarrhea").grid(row=12, column=0)
 labelNum13= tk.Label(root, text="Loss Sense Smell/Taste").grid(row=13, column=0)
 labelNum14= tk.Label(root, text="Difficulty Breathing").grid(row=14, column=0)
 
-
 entryNum1 = tk.Entry(root, textvariable=lname).grid(row=1, column=2)   
 entryNum2 = tk.Entry(root, textvariable=fname).grid(row=2, column=2)
 entryNum3 = tk.Entry(root, textvariable=age).grid(row=3, column=2)
@@ -132,62 +128,59 @@ labelResult.grid(row=20, column=0)
 
 call_result = partial(call_result, labelResult, lname, fname, age, gender, addr, contact, fever, cough, bodypain, sorethroat, fatigue, diarrhea, losssenses, diffbreathing)  
 
-
-
-l1 = tk.Label(root,  text='Database', width=0 ) # added one Label 
+l1 = tk.Label(root,  text='Database', width=0 ) 
 l1.grid(row=20,column=0) 
 
 t1 = tk.Text(root,  height=9, width=60).place(x=10, y=340)
-#t1.grid(row=20,column=5) 
-
-
+ 
 # button save
 buttonCal = tk.Button(root, text="Save Data", command=call_result, fg='red').place(x=30, y=520) #.grid(row=70, column=0) 
 
-# button search
-#btn=Button(text="Open Search Window", command=open_root).grid(row = 80, column = 0)
 
-
-# button search
-
-#btn=Button(text="Open Search Window",command=open_root).grid(row = 80, column = 0)
-
-# search window
+# search window start
 def open_root():
-   new=Toplevel(root)
-   new.title("Search Window")
-   new.geometry("450x400")
+       
+   window=Toplevel(root)
+   window.title("Search Window")
+   window.geometry("450x400")
    
-   btn=Button(new, text="Exit Program", command=Close, fg='blue')
-   btn.place(x=130, y=350)
-   #txt2find = tk.StringVar() 
-   #txtarea = Text(new, width=80, height=5)
-   #txtarea.pack(pady=20)
-  # txtarea.place(x=40, y=20)
-   #pathh = Entry(new)
-   #pathh.pack(side=LEFT, expand=True, fill=X, padx=20)
    
-   with open("dBase.txt", "r") as f:
-        Label(new, text='file')
-        Label(new, text=f.read()).pack()
+   t3 = tk.Text(window,  height=10, width=50).place(x=10, y=120) 
    
-   lbl=Label(new, text="Search Database", fg='red', font=("Helvetica", 16))
-   lbl.place(x=10, y=10)
+   #this is our event for the button
+   def clickMe():
+        x = name.get()
+        print(x)
+        with open(r'dBase.txt', 'r') as fp:
+                # read all lines in a list
+                        lines = fp.readlines()
+                        for line in lines:
+                                if line.find(x) != -1:
+                                        print   (x, 'txt exists in file')
+                                        print('Line Number:', lines.index(line))
+                                        print('Line:', line) 
+                                        
+        t3 = tk.Text(window,  height=10, width=50).place(x=10, y=120)     
+        #t3.insert(INSERT, line())
+                                        
+        return
+    
+# This is our label
+   label = ttk.Label(window, text = "Search Text")
+   label.grid(column = 0, row = 0)
+ 
+# In here we are getting the text from the text input
+   name = tk.StringVar()
+   nameEntered = ttk.Entry(window, width = 15, textvariable = name)
+   nameEntered.grid(column = 0, row = 1)
+ 
+# This is our button to send string for checking
+   button = ttk.Button(window, text = "Click Me", command = clickMe)
+   button.grid(column= 0, row = 2)
    
-   txtfld1=Label(new, text="Enter Text", bd=5)
-   txtfld1.place(x=100, y=180)
-   txtfld=Entry(new, text="This is Ey Widget", bd=5)
-   txtfld.place(x=100, y=150)
    
-   #labelResult = tk.Label(new)
+# search window end   
    
-
-   labelOut1 = tk.Label(new,text='Output', width=0 ).place(x=100, y=230) 
-   txtBoxOut1 = tk.Text(new,height=5, width=40).place(x=100, y=250)
-   
-   # button below
-   btn=Button(new, text="search", command=call_result, fg='blue')
-   btn.place(x=300, y=350)
 
 btn=Button(text="Open Search Window",command=open_root, fg='blue') #.grid(row = 80, column = 0)
 btn.place(x=130, y=520)

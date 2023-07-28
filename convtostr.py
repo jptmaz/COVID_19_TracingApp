@@ -36,4 +36,3 @@ class convtostr:
                     return
                 
                 
-    def 
